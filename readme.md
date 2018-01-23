@@ -1,9 +1,12 @@
 # ReferPy
 在论文写作中，参考文献是非常重要的一部分，但是花费过多时间在参考文献的格式上，往往得不偿失。本项目利用[百度学术](http://xueshu.baidu.com/)的查询功能，通过Http请求。<br>
 当前接口支持获取百度学术所提供的**所有**[参考文献格式]()：
-* APA
-* MLA
-* GBT7714
+* [APA](https://baike.baidu.com/item/APA%E6%A0%BC%E5%BC%8F/1647900)
+	American Psychological Association, 是美国心理学会出版的《美国心理协会刊物准则》。APA格式是一个为广泛接受的研究论文撰写格式，特别针对社会科学领域的研究。
+* [MLA[(https://baike.baidu.com/item/MLA/1197673?fr=aladdin)
+	Modern Language Association, 美国现代语言协会制定的论文指导格式，在一般书写英语论文时应当使用MLA格式来保证学术著作的完整。
+* [GB/T 7714](https://wenku.baidu.com/view/83139309f7ec4afe05a1df19.html)
+	《文后参考文献著录规则》 是一项专门供著者和编辑编撰文后参考文献使用的国家标准。 
 <br>
 后期有时间会支持Google学术，知网等更其他搜索引擎，也会建设Web网站，提供查询接口。
 
@@ -106,5 +109,4 @@ ReferPy在`命令行`中直接输入一个指定论文，并在`命令行`直接
 和上述类似，会查询`最相似`的，当然是`百度学术`认为的最相似。
 
 #### 4.使用是否有次数限制
-
-## 四、参考文献格式
+暂时还未测试出百度学术对于该接口限制的次数

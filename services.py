@@ -50,3 +50,9 @@ def paperTitleItera(path):
             if(len(title)==0):   continue
             yield title
         return
+
+def log(output):
+    logfile = open("log", "ab")
+    logfile.write((output+"\n").encode("utf8"))
+    logfile.flush()
+    logfile.close()
