@@ -25,7 +25,7 @@
 	>>pip install beautifulsoup4
 	```
 	若提示找不到pip的错误，则可能是没有添加pip所在的环境变量。pip的环境变量为安装目录下的Scripts文件夹：`<Python安装目录>/Scripts/`
-* ReferPy
+* ReferPy<br>
 	下载ReferPy压缩文件，在你愿意的地方解压即可。
 	
 ## 二、接口
