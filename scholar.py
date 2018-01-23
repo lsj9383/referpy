@@ -19,8 +19,8 @@ def searchRef(paperName, debug=False):
         mapper['GBT7714'] = re.sub('#i{|}', '', jsonObject['sc_GBT7714'])
         mapper['MLA'] = re.sub('#i{|}', '', jsonObject['sc_MLA'])
     except Exception as e:
-        services.log("【异常】Json解析错误:"+str(jsonObject))
-        #raise e
+        # services.log("【异常】Json解析错误:"+str(jsonObject))
+        raise e
     if(debug): print('--------------')
     return mapper
 
