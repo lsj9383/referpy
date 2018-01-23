@@ -10,22 +10,25 @@
 ## 一、安装
 本项目是通过Python脚本编写的，在Windows系统下需要配置Python环境：
 * Python<br>
-	请点击[这里](https://www.python.org/downloads/)查看安装列表。尽量采用Python3.6及其以上版本(本项目开发环境采用Python 3.7.0a4).安装完毕后，请在命令行用以下命令测试安装是否成功，若安装成功则返回版本信息：
+	请点击[这里](https://www.python.org/downloads/)查看安装列表。尽量采用Python3.6及其以上版本(本项目开发环境采用Python 3.7.0a4).请在安装时选择`添加环境变量`<br>
+	安装完毕后请在`命令行`用以下命令测试安装是否成功，若安装成功则返回版本信息：
 	```
-	Python -V
+	>>Python -V
 	```
+	若安装成功，但是没有返回版本信息，则很可能是没有添加环境变量所致。请添加`<Python安装目录>`和`<Python安装目录>/Scripts/`至环境变量
 * BeautifulSoup<br>
-	这是一个Python的第三方工具包，用于对html网页进行解析。通过python的pip工具包可以进行自动下载安装。
+	这是一个Python的第三方工具包，用于对html网页进行解析。通过python的pip工具包可以进行自动下载安装。在`命令行`下通过下述命令进行安装：
 	```
-	pip install beautifulsoup4
+	>>pip install beautifulsoup4
 	```
+	若提示找不到pip的错误，则可能是没有添加pip所在的环境变量。pip的环境变量为安装目录下的Scripts文件夹：`<Python安装目录>/Scripts/`
 * ReferPy
 	下载ReferPy压缩文件，在你愿意的地方解压即可。
 	
 ## 二、接口
-ReferPy的接口的使用是通过命令行，需要先进入ReferPy所在的目录`cd <ReferPy-DIR>`, 再通过python调用其接口进行查询：
+ReferPy的接口的使用是通过命令行，需要先进入ReferPy所在的目录`cd <ReferPy解压目录>`, 再通过python调用其接口进行查询：
 ```
-python refer.py <paper> [-DEBUG|-debug|-D|-d]
+>>python refer.py <paper> [-DEBUG|-debug|-D|-d]
 ```
 ReferPy将会发起http请求访问百度学术，并获得解析返回的结果。注意，由于需要联网，因此要确保`网络环境畅通`。
 
