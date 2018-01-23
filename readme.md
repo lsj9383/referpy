@@ -36,7 +36,7 @@ ReferPy的接口的使用是通过命令行，需要先进入ReferPy所在的目
 ReferPy将会发起http请求访问百度学术，并获得解析返回的结果。注意，由于需要联网，因此要确保`网络环境畅通`。
 
 ### *1.直接查询*
-ReferPy在`命令行`中直接输入一个指定论文，并在`命令行`直接显示该论文的参考文献格式：
+在`命令行`中直接输入一个论文题目，该论文的参考文献格式会在`命令行`直接显示，需要注意论文题目必须加前缀`paper:`，否则会作为文件或目录进行解析(批量查询)。示例如下：
 ```
 >>python referpy.py paper:"A data hiding scheme based upon DCT coefficient modification"
 ```
