@@ -35,7 +35,7 @@ ReferPy将会发起http请求访问百度学术，并获得解析返回的结果
 ### *1.直接查询*
 ReferPy在`命令行`中直接输入一个指定论文，并在`命令行`直接显示该论文的参考文献引用格式：
 ```
-python refer.py paper:"A data hiding scheme based upon DCT coefficient modification"
+>>python referpy.py paper:"A data hiding scheme based upon DCT coefficient modification"
 ```
 将会查询论文A data hiding scheme based upon DCT coefficient modification的文献引用格式，如下图所示：
 ![直接查询示例](icon/direct.png)
