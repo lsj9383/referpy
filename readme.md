@@ -1,5 +1,9 @@
 # ReferPy
 在论文写作中，参考文献是非常重要的一部分，但是花费过多时间在参考文献的格式上，往往得不偿失。本项目利用[百度学术](http://xueshu.baidu.com/)的查询功能，通过Http请求。<br>
+当前接口支持获取百度学术所提供的`所有`[参考文献引用格式]()：
+* APA
+* MLA
+* GBT7714
 后期有时间会支持Google学术，知网等更其他搜索引擎，也会建设Web网站，提供查询接口。
 
 ## 一、安装
@@ -18,9 +22,17 @@
 	下载[ReferPy压缩文件](/lsj9383/referpy/archive/master.zip)，在你愿意的地方解压开来即可。
 	
 ## 二、接口
-
+ReferPy的接口的使用是通过命令行，ReferPy将会发起http请求访问百度学术，并获得解析返回的结果。注意，由于需要联网，因此要确保`网络环境畅通`。
+```
+python refer.py <paper> [-DEBUG|-debug|-D|-d]
+```
 ### *1.直接查询*
-
+ReferPy在`命令行`中直接输入一个指定论文，并在`命令行`直接显示该论文的参考文献引用格式：
+```
+python refer.py paper:"A data hiding scheme based upon DCT coefficient modification"
+```
+将会查询论文A data hiding scheme based upon DCT coefficient modification的文献引用格式，如下图所示：
+![直接查询示例](icon/direct.png)
 ### *2.批量查询*
 
 ### *3.DEBUG模式*

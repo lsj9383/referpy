@@ -8,7 +8,7 @@ import re
 			
 
 def searchRef(paperName, debug=False):
-    jsonBytes = searchRefJson(paperName)
+    jsonBytes = searchRefJson(paperName, debug)
     if(debug): print('parser json')
     jsonObject = json.loads(jsonBytes.decode('gb2312'))
     if(debug): print('regualr')
