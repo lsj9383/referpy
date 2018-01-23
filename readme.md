@@ -5,17 +5,17 @@
 ## 一、安装
 本项目是通过Python脚本编写的，在Windows系统下需要配置Python环境：
 * Python<br>
-	请点击[这里](https://www.python.org/downloads/)查看安装列表。尽量采用Python3.6及其以上版本(本项目开发环境采用Python 3.7.0a4).安装完毕后，请在命令行用以下命令测试安装是否成功，若成功返回版本信息：
+	请点击[这里](https://www.python.org/downloads/)查看安装列表。尽量采用Python3.6及其以上版本(本项目开发环境采用Python 3.7.0a4).安装完毕后，请在命令行用以下命令测试安装是否成功，若安装成功则返回版本信息：
 	```
 	Python -V
 	```
-	![Python版本测试](icon/python-version.bmp)
 * BeautifulSoup<br>
 	这是一个Python的第三方工具包，用于对html网页进行解析。通过python的pip工具包可以进行自动下载安装。
 	```
 	pip install beautifulsoup4
 	```
-	![bs4安装](icon/install-bs4.png)
+* ReferPy
+	下载[ReferPy压缩文件](/lsj9383/referpy/archive/master.zip)，在你愿意的地方解压开来即可。
 	
 ## 二、接口
 
@@ -27,3 +27,5 @@
 
 ## 三、FAQ
 
+
+## 四、参考文献引用格式
