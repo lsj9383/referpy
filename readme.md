@@ -86,9 +86,10 @@ python refer.py paper:"A data hiding scheme based upon DCT coefficient modificat
 	[2] Hao-Bin, Zhao L Y, Zhong W D. A novel steganography algorithm based on motion vector and matrix encoding[C]// IEEE, International Conference on Communication Software and Networks. IEEE, 2011:406-409. 
 	[3] 苏育挺, 张新龙, 张承乾,等. 基于运动矢量的H.264信息隐藏算法[J]. 天津大学学报（自然科学与工程技术版）, 2014(1):67-73. 
 	```
+	
 ### *3.DEBUG模式*
-	在所有接口最后用`-DEBUG`可以开启调试模式，调试模式中将给出更为详细的信息。为了方便也可以通过`-debug`, `-d`, `-D`启动DEBUG模式：
-	![调试模式](icon/debug.png)
+在所有接口最后用`-DEBUG`可以开启调试模式，调试模式中将给出更为详细的信息。为了方便也可以通过`-debug`, `-d`, `-D`启动DEBUG模式：
+![调试模式](icon/debug.png)
 
 ## 三、FAQ
 #### 1.论文标题错误
