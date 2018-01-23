@@ -9,7 +9,7 @@
 	```
 	Python -V
 	```
-	![Python版本测试](icon/python-version.png)
+	![Python版本测试](icon/python-version.bmp)
 * BeautifulSoup<br>
 	这是一个Python的第三方工具包，用于对html网页进行解析。通过python的pip工具包可以进行自动下载安装。
 	```
