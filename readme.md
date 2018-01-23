@@ -20,7 +20,7 @@
 	pip install beautifulsoup4
 	```
 * ReferPy
-	下载[ReferPy压缩文件](/lsj9383/referpy/archive/master.zip)，在你愿意的地方解压开来即可。
+	下载ReferPy压缩文件，在你愿意的地方解压即可。
 	
 ## 二、接口
 ReferPy的接口的使用是通过命令行，需要先进入ReferPy所在的目录`cd <ReferPy-DIR>`, 再通过python调用其接口进行查询：
