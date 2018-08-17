@@ -1,12 +1,11 @@
 # _*_ coding:utf-8 _*_
 import sys
+import scholar
+import os
+import time
+import services
 
 def main():
-    import scholar
-    import os
-    import time
-    import services
-
     debug = False
     if(len(sys.argv) == 1):
         raise Exception("【异常】 没有输入期望检索的目录和文件")

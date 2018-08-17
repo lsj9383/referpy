@@ -17,7 +17,7 @@ def closeall(files):
     for key, value in files.items():
         value.close()
 
-# 重试方法封装器.可以用装饰器代替
+# 重试方法封装器
 def retryWrapper(method, times):
     def retryMethod(*args, **kwargs):
         nonlocal times
