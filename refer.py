@@ -1,24 +1,23 @@
 # _*_ coding:utf-8 _*_
 import sys
-import scholar
 import os
 import time
+import pyargv
 import services
+from referpy import searchRef
 
-def main():
-    debug = False
-    if(len(sys.argv) == 1):
-        raise Exception("【异常】 没有输入期望检索的目录和文件")
-    if(len(sys.argv)==3 and (sys.argv[2]=="-debug" or sys.argv[2]=="-d" or \
-                            sys.argv[2]=="-DEBUG" or sys.argv[2]=="-D")):
-        debug = True
-
+@pyargv.parse(
+    pyargv.KeyValue("paper", "-p", default=""),
+    pyargv.KeyValue("fd", "-f" , default=""),
+    pyargv.Boolean("debug"),
+    )
+def main(paper, fd, debug):
     # 快速查询模式
-    if(sys.argv[1].startswith("paper:")):
+    if(paper):
         try:
             title = sys.argv[1][6:]
-            print("search \"{0}\"".format(title))
-            mapper = services.retryWrapper(scholar.searchRef, 3)(title, debug)  # 重试3次
+            print("search \"{0}\"".format(paper))
+            mapper = services.retryWrapper(searchRef, 3)(paper, debug)  # 重试3次
         except Exception as e:  raise e
         else:
             print("【APA】："+mapper["APA"])
@@ -27,17 +26,19 @@ def main():
             return
     
     # 目录/文件查询模式
-    if ((not os.path.isfile(sys.argv[1])) and (not os.path.isdir(sys.argv[1]))):
-        raise Exception("【异常】 没有找到该目录或文件：\"{0}\"".format(sys.argv[1]))
+    if ((not fd) or (not os.path.exists(fd))):
+        raise Exception("【异常】 没有找到该目录或文件：\"{0}\"".format(fd))
     lineNumber = 0
     haveExceptionNote=False
     files = services.openall("wb", "apa.txt", "gbt7714.txt", "mla.txt")
-    for title in services.paperTitleItera(sys.argv[1]):
+    for title in services.paperTitleItera(fd):
         lineNumber += 1
         print("search \"{0}\"".format(title))
         try:
-            mapper = services.retryWrapper(scholar.searchRef, 3)(title, debug)  # 重试3次
-        except Exception as e:       # 出现异常，将错误进行记录
+            # 重试3次
+            mapper = services.retryWrapper(searchRef, 3)(title, debug)
+        except Exception as e:
+            # 出现异常，将错误进行记录
             files["apa.txt"].write("[{0}] {1} \n".format(lineNumber, str(e)).encode("utf8"))
             files["gbt7714.txt"].write("[{0}] {1} \n".format(lineNumber, str(e)).encode("utf8"))
             files["mla.txt"].write("[{0}] {1} \n".format(lineNumber, str(e)).encode("utf8"))
@@ -55,6 +56,5 @@ def main():
 
 
 if __name__ == "__main__":
-    try:    main()
-    except: print(sys.exc_info()[1])
-    else:   print("【成功】")
+    main()
+    print("【成功】")

@@ -25,37 +25,50 @@
 	>>pip install beautifulsoup4
 	```
 	若提示找不到pip的错误，则可能是没有添加pip所在的环境变量。pip的环境变量为安装目录下的Scripts文件夹：`<Python安装目录>/Scripts/`
+* pyargv<br>
+	这是一个第三方的python命令行输入参数构造库，按照该[教程](https://github.com/lsj9383/pyargv)可以很快的进行安装。
 * ReferPy<br>
 	下载ReferPy压缩文件，在你愿意的地方解压即可。
 	
 ## 二、接口
 ReferPy的接口的使用是通过命令行，需要先进入ReferPy所在的目录`cd <ReferPy解压目录>`, 再通过python调用其接口进行查询：
 ```
->>python refer.py <paper> [-DEBUG|-debug|-D|-d]
+>>python refer.py [-p <paper>] [-f <fd>] [--debug] [--help]
 ```
-ReferPy将会发起http请求访问百度学术，并获得解析返回的结果。注意，由于需要联网，因此要确保`网络环境畅通`。
+ReferPy将会发起http请求访问百度学术，并获得解析返回的结果。注意，由于需要联网，因此要确保`网络环境畅通`。上述命令中的`-p <paper>`指的是对论文名称发起`直接查询`，对于`-f <fd>`指的是对文件夹或文本文件中的论文名称发起`批量查询`，当参数中包含空格时，需要将参数通过双引号引用。可以通过`python refer.py --help`查询参数作用。
 
 ### *1.直接查询*
-在`命令行`中直接输入一个论文题目，该论文的参考文献格式会在`命令行`直接显示，需要注意论文题目必须加前缀`paper:`，否则会作为文件或目录进行解析(批量查询)。示例如下：
+输入名称直接查询论文的参考文献格式。示例如下：
+```sh
+>>python refer.py -p "A data hiding scheme based upon DCT coefficient modification"
+
+# 命令行输出
+search "A data hiding scheme based upon DCT coefficient modification"
+【APA】：Lin, Y. K. (2014). A data hiding scheme based upon dct coefficient modification. Computer Standards & Interfaces, 36(5), 855-862.
+【GBT7714A】：Lin Y K. A data hiding scheme based upon DCT coefficient modification[J]. Computer Standards & Interfaces, 2014, 36(5):855-862.
+【MLA】：Lin, Yih Kai. "A data hiding scheme based upon DCT coefficient modification." Computer Standards & Interfaces 36.5(2014):855-862.
+【成功】
 ```
->>python referpy.py paper:"A data hiding scheme based upon DCT coefficient modification"
-```
-将会查询论文A data hiding scheme based upon DCT coefficient modification的参考文献格式，如下图所示：
-![直接查询示例](icon/direct.png)
 ### *2.批量查询*
 批量生成是不会直接将查询结果输出到命令行的，而是将结果批量输出到`ReferPy的目录`下的apa.txt, gbt7714.txt, mla.txt文件中，每个文件保存对应类型的参考文献格式。<br>
 批量查询分了两种, `文件查询`和`目录查询`:
 * 文件查询<br>
 	在文件中一行记录一个待查询的论文题目，只要交给referpy该文件的路径，需要注意的是保存的文件需要为`UTF8`就会在`ReferPy的目录`下批量生成结果:
-	```
-	# D:/papers.txt(实际使用时不应该有该行)
+	```sh
+	# papers(在仓库的根目录下的文件)
 	A data hiding scheme based upon DCT coefficient modification
 	A Novel Steganography Algorithm Based on Motion Vector and Matrix Encoding
 	基于运动矢量的H.264信息隐藏算法
-	```
-	![文件查询](icon/papersfile.png)<br>
-	最终结果将会以文件中论文顺序进行排列输出，并给其编号：
-	```
+	
+	# 命令行输入
+	>>python3 refer.py -f papers
+	
+	# 命令行输出
+	search "A data hiding scheme based upon DCT coefficient modification"
+	search "A Novel Steganography Algorithm Based on Motion Vector and Matrix Encoding"
+	search "基于运动矢量的H.264信息隐藏算法"
+	【成功】
+
 	# <ReferPyDir>/apa.txt(使用中不会生成该行)
 	[1] Lin, Y. K. (2014). A data hiding scheme based upon dct coefficient modification. Computer Standards & Interfaces, 36(5), 855-862. 
 	[2] Hao-Bin, Zhao, L. Y., & Zhong, W. D. (2011). A novel steganography algorithm based on motion vector and matrix encoding. IEEE, International Conference on Communication Software and Networks (pp.406-409). IEEE. 
@@ -72,31 +85,13 @@ ReferPy将会发起http请求访问百度学术，并获得解析返回的结果
 	[3] 苏育挺, 张新龙, 张承乾,等. 基于运动矢量的H.264信息隐藏算法[J]. 天津大学学报（自然科学与工程技术版）, 2014(1):67-73. 
 	```
 * 目录查询<br>
-	若文件夹中已经有了所有的文献(文件名就是文献名)，而你并不希望手动将文献名称全部敲入txt文件中时，可以使用目录查询:
-	目录中有以下文件：<br>
-	![目录文件](icon/dir.png)<br>
-	![目录查询](icon/papersdir.png)<br>
-	最终结果同样会被编号，且是以论文题目的字典顺序进行排序的。
-	```
-	# <ReferPyDir>/apa.txt(使用中不会生成该行)
-	[1] Lin, Y. K. (2014). A data hiding scheme based upon dct coefficient modification. Computer Standards & Interfaces, 36(5), 855-862. 
-	[2] Hao-Bin, Zhao, L. Y., & Zhong, W. D. (2011). A novel steganography algorithm based on motion vector and matrix encoding. IEEE, International Conference on Communication Software and Networks (pp.406-409). IEEE. 
-	[3] 苏育挺, 张新龙, 张承乾, & 张静. (2014). 基于运动矢量的h.264信息隐藏算法. 天津大学学报（自然科学与工程技术版）(1), 67-73. 
-	
-	# <ReferPyDir>/mla.txt(使用中不会生成该行)
-	[1] Lin, Yih Kai. "A data hiding scheme based upon DCT coefficient modification." Computer Standards & Interfaces 36.5(2014):855-862. 
-	[2] Hao-Bin, L. Y. Zhao, and W. D. Zhong. "A novel steganography algorithm based on motion vector and matrix encoding." IEEE, International Conference on Communication Software and Networks IEEE, 2011:406-409. 
-	[3] 苏育挺等. "基于运动矢量的H.264信息隐藏算法." 天津大学学报（自然科学与工程技术版） 1(2014):67-73. 
-	
-	# <ReferPyDir>/gbt7714.txt(使用中不会生成该行)
-	[1] Lin Y K. A data hiding scheme based upon DCT coefficient modification[J]. Computer Standards & Interfaces, 2014, 36(5):855-862. 
-	[2] Hao-Bin, Zhao L Y, Zhong W D. A novel steganography algorithm based on motion vector and matrix encoding[C]// IEEE, International Conference on Communication Software and Networks. IEEE, 2011:406-409. 
-	[3] 苏育挺, 张新龙, 张承乾,等. 基于运动矢量的H.264信息隐藏算法[J]. 天津大学学报（自然科学与工程技术版）, 2014(1):67-73. 
+	目录查询是读取目录下的文件名，作为论文的名称进行查询。这里不给出具体的示例
+	```sh
+	>> python refer.py -f <dir>
 	```
 	
 ### *3.DEBUG模式*
-在所有接口最后用`-DEBUG`可以开启调试模式，调试模式中将给出更为详细的信息。为了方便也可以通过`-debug`, `-d`, `-D`启动DEBUG模式：<br>
-![调试模式](icon/debug.png)
+在所有接口最后用`-DEBUG`可以开启调试模式，调试模式中将给出更为详细的信息。为了方便也可以通过`-debug`, `-d`, `-D`启动DEBUG模式。
 
 ## 三、FAQ
 #### 1.对中文文献的支持
