@@ -1,5 +1,7 @@
 #-*-coding:utf-8-*-
 
+__version__ = "0.2-dev"
+
 import urllib.request
 import urllib.parse
 from bs4 import BeautifulSoup

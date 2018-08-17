@@ -1,7 +1,5 @@
 # _*_ coding:utf-8 _*_
 
-__version__ = "0.1-dev"
-
 # 多个文件打开
 def openall(mod, *files):
     mapper={}
